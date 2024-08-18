@@ -1,0 +1,44 @@
+module AVM_AVALONMASTER_MAGNITUDE #
+(
+  
+  parameter integer AVM_AVALONMASTER_DATA_WIDTH = 8,
+  parameter integer AVM_AVALONMASTER_ADDRESS_WIDTH = 32
+)
+
+
+(
+
+// AVALON MM MASTER PORT TO ACCELERATOR
+input wire[17:0]addressBUS,
+input wire [7:0]writeBUS,
+output wire[7:0]readBUS,
+input wire readEn,
+input wire WriteEn,
+output wire waitrequest,
+
+// FROM AVALON BUS TO AVALON MM MASTER PORT
+input wire CSI_CLOCK_CLK,
+input wire CSI_CLOCK_RESET_N,
+  
+// FROM AVALON MM MASTER PORT TO AVALON BUS THEN TO SDRAM  
+output wire [AVM_AVALONMASTER_ADDRESS_WIDTH - 1:0] AVM_AVALONMASTER_ADDRESS,
+input wire AVM_AVALONMASTER_WAITREQUEST,
+output wire AVM_AVALONMASTER_READ,
+output wire AVM_AVALONMASTER_WRITE,
+input wire [AVM_AVALONMASTER_DATA_WIDTH - 1:0] AVM_AVALONMASTER_READDATA,
+output wire [AVM_AVALONMASTER_DATA_WIDTH - 1:0] AVM_AVALONMASTER_WRITEDATA
+
+
+);
+
+assign AVM_AVALONMASTER_ADDRESS = addressBUS;
+assign AVM_AVALONMASTER_READ = readEn;
+assign AVM_AVALONMASTER_WRITE = WriteEn;
+assign AVM_AVALONMASTER_WRITEDATA = writeBUS;
+assign readBUS = AVM_AVALONMASTER_READDATA[7:0] ;
+assign waitrequest = AVM_AVALONMASTER_WAITREQUEST;  
+
+
+endmodule
+
+
