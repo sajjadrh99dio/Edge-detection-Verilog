@@ -8,6 +8,8 @@ module AVM_AVALONMASTER_MAGNITUDE #
 
 (
 
+
+
 // AVALON MM MASTER PORT TO ACCELERATOR
 input wire[17:0]addressBUS,
 input wire [7:0]writeBUS,
